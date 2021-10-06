@@ -42,8 +42,7 @@ def drawBoard(win, rows, size):
     spacing = size // rows
     for i in range(rows):
         pygame.draw.line(win, grey, (0, i * spacing), (size, i * spacing))
-        for j in range(rows):
-            pygame.draw.line(win, grey, (j * spacing, 0), (j * spacing, size))
+        pygame.draw.line(win, grey, (i * spacing, 0), (i * spacing, size))
 
 
 def draw(win, board, rows, size):
