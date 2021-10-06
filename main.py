@@ -68,6 +68,15 @@ def main():
                 elif node != endNode and node != startNode:
                     node.color = black
             
+            elif pygame.mouse.get_pressed()[2]:
+                row, col = clickedPos(pygame.mouse.get_pos())
+                node = board[row][col]
+                node.color = white
+                if node == startNode:
+                    startNode = None
+                elif node == endNode:
+                    endNode = None
+
 
     pygame.quit()
 
