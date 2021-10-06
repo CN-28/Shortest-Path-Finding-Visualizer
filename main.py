@@ -1,5 +1,6 @@
 import pygame
 import bfs, dijkstra, a_star, bellman_ford
+from time import sleep
 from config import *
 
 class Node:
@@ -19,9 +20,17 @@ class Node:
 
 def drawBoard(win, board):
     win.fill(white)
-    for row in board:
-        for node in row:
+    for i in range(rows):
+        board[i][0].color = black
+        board[0][i].color = black
+        board[rows - 1][i].color = black
+        board[i][rows - 1].color = black
+
+    for i in range(rows):
+        for j in range(rows):
+            node = board[i][j]
             node.display(win)
+    
 
     spacing = size // rows
     for i in range(rows):
@@ -57,16 +66,17 @@ def main():
             if pygame.mouse.get_pressed()[0]:
                 row, col = clickedPos(pygame.mouse.get_pos())
                 node = board[row][col]
-                if not startNode:
-                    startNode = node
-                    startNode.color = yellow
+                if node.color != black:
+                    if not startNode:
+                        startNode = node
+                        startNode.color = yellow
+                    
+                    elif not endNode and node != startNode:
+                        endNode = node
+                        endNode.color = purple
 
-                elif not endNode and node != startNode:
-                    endNode = node
-                    endNode.color = orange
-
-                elif node != endNode and node != startNode:
-                    node.color = black
+                    elif node != endNode and node != startNode:
+                        node.color = black
             
             elif pygame.mouse.get_pressed()[2]:
                 row, col = clickedPos(pygame.mouse.get_pos())
@@ -77,6 +87,16 @@ def main():
                 elif node == endNode:
                     endNode = None
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN: 
+                    if not bfs.BFS(lambda: drawBoard(win, board), board, startNode, endNode):
+                        sleep(0.5)
+                        startNode, endNode = None, None
+                        board = [[Node(i, j, size // rows) for j in range(rows)] for i in range(rows)]
+                
+                if event.key == pygame.K_r:
+                    startNode, endNode = None, None
+                    board = [[Node(i, j, size // rows) for j in range(rows)] for i in range(rows)]
 
     pygame.quit()
 
