@@ -88,7 +88,7 @@ def main():
                     endNode = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN: 
+                if event.key == pygame.K_RETURN and startNode and endNode: 
                     if not bfs.BFS(lambda: drawBoard(win, board), board, startNode, endNode):
                         sleep(0.5)
                         startNode, endNode = None, None
