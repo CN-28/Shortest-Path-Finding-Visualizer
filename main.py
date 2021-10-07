@@ -1,5 +1,6 @@
 import pygame
 import bfs, dijkstra, a_star, bellman_ford
+from random import randint
 from time import sleep
 from config import *
 
@@ -11,7 +12,12 @@ class Node:
         self.x = col * size
         self.color = white
         self.size = size
+        
+    def addPosCost(self):
+        self.cost = randint(1, 99)
     
+    def addNegPosCost(self):
+        self.cost = randint(-9, 99)
 
     def display(self, win):
         pygame.draw.rect(win, self.color, (self.y, self.x, self.size, self.size))
