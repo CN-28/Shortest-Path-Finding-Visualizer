@@ -8,7 +8,7 @@ def BFS(draw, board, start, end):
     parent = [[None for _ in range(rows)] for _ in range(rows)]
     Q.append((start.row, start.col))
     dirs = [(0, 1), (1, 0), (-1, 0), (0, -1)]
-    succes = False
+    success = False
 
     while Q:
         for event in pygame.event.get():
@@ -17,7 +17,7 @@ def BFS(draw, board, start, end):
 
         row, col = Q.popleft()
         if (row, col) == (end.row, end.col):
-            succes = True
+            success = True
             break
         
 
@@ -38,7 +38,7 @@ def BFS(draw, board, start, end):
                     Q.append((i, j))
         draw()
 
-    if not succes:
+    if not success:
         return False
     
     temp = end.row, end.col

@@ -1,5 +1,5 @@
 import pygame
-import bfs, dijkstra, a_star, bellman_ford
+import bfs, dijkstra, bellman_ford, a_star
 from random import randint
 from time import sleep
 from config import *
@@ -94,12 +94,24 @@ def main():
                     endNode = None
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN and startNode and endNode: 
-                    if not bfs.BFS(lambda: drawBoard(win, board), board, startNode, endNode):
+                if startNode and endNode:
+                    foundPath = None
+                    if event.key == pygame.K_b: 
+                        foundPath = bfs.BFS(lambda: drawBoard(win, board), board, startNode, endNode)
+
+                    elif event.key == pygame.K_d:
+                        for i in range(rows):
+                            for j in range(rows):
+                                board[i][j].addPosCost()
+                        foundPath = dijkstra.dijkstra(lambda: drawBoard(win, board), board, startNode, endNode)
+                            
+                    
+                    if not foundPath:
                         sleep(0.5)
                         startNode, endNode = None, None
                         board = [[Node(i, j, size // rows) for j in range(rows)] for i in range(rows)]
-                
+                        
+
                 if event.key == pygame.K_r:
                     startNode, endNode = None, None
                     board = [[Node(i, j, size // rows) for j in range(rows)] for i in range(rows)]
