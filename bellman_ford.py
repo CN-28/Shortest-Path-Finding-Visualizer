@@ -17,6 +17,7 @@ def BellmanFord(draw, win, board, start, end, cntBlacks):
 
         for row in range(1, rows - 1):
             for col in range(1, rows - 1):
+                isChanged = False
                 for step_row, step_col in dirs:
                     i, j = row + step_row, col + step_col
                     if 0 < i < rows - 1 and 0 < j < rows - 1:
@@ -25,22 +26,25 @@ def BellmanFord(draw, win, board, start, end, cntBlacks):
                             dist[i][j] = dist[row][col] + node.cost
                             parent[i][j] = row, col
 
-                            if node != end and node != start:
+                            if node != end and node != start and node.color != red:
+                                isChanged = True
                                 node.color = red
                                 cnt += 1
                                 drawSquare(win, node)
                             
-                            for step_row, step_col in dirs:
-                                k, l = i + step_row, j + step_col
-                                if 0 < k < rows - 1 and 0 < l < rows - 1:
-                                    node = board[k][l]
-                                    if node.color == white:
-                                        node.color = blue
-                                        drawSquare(win, node)
-                    
-            pygame.display.update()
-            if cnt + cntBlacks < (rows - 1) * (rows - 1) - 2:
-                sleep(0.015)
+                                for step_row, step_col in dirs:
+                                    k, l = i + step_row, j + step_col
+                                    if 0 < k < rows - 1 and 0 < l < rows - 1:
+                                        node = board[k][l]
+                                        if node.color == white:
+                                            node.color = blue
+                                            drawSquare(win, node)
+
+                if cnt + cntBlacks < (rows - 1) * (rows - 1) - 2 and isChanged:
+                    pygame.display.update()
+                    sleep(0.015)       
+        pygame.display.update()
+            
     
     for row in range(1, rows - 1):
         for col in range(1, rows - 1):

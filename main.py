@@ -17,7 +17,7 @@ class Node:
         self.cost = randint(0, 999)
     
     def addNegPosCost(self):
-        self.cost = randint(-15, 999)
+        self.cost = randint(-10, 999)
 
     def display(self, win):
         pygame.draw.rect(win, self.color, (self.y, self.x, self.size, self.size))
