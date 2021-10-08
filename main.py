@@ -14,14 +14,19 @@ class Node:
         self.size = size
         
     def addPosCost(self):
-        self.cost = randint(1, 99)
+        self.cost = randint(0, 999)
     
     def addNegPosCost(self):
-        self.cost = randint(-9, 99)
+        self.cost = randint(-900, 999)
 
     def display(self, win):
         pygame.draw.rect(win, self.color, (self.y, self.x, self.size, self.size))
     
+
+def drawSquare(win, node):
+    node.display(win)
+    pygame.draw.line(win, grey, (0, node.col * spacing), (size, node.col * spacing))
+    pygame.draw.line(win, grey, (node.row * spacing, 0), (node.row * spacing, size))
 
 
 def drawBoard(win, board):
@@ -31,23 +36,25 @@ def drawBoard(win, board):
         board[0][i].color = black
         board[rows - 1][i].color = black
         board[i][rows - 1].color = black
-
+    
+    cntBlacks = 0
     for i in range(rows):
         for j in range(rows):
             node = board[i][j]
             node.display(win)
+            if node.color == black:
+                cntBlacks += 1
     
 
-    spacing = size // rows
     for i in range(rows):
         pygame.draw.line(win, grey, (0, i * spacing), (size, i * spacing))
         pygame.draw.line(win, grey, (i * spacing, 0), (i * spacing, size))
 
     pygame.display.update()
+    return cntBlacks
 
 
 def clickedPos(pos):
-    spacing = size // rows
     x, y = pos
     row, col = x // spacing, y // spacing
     return row, col
@@ -55,6 +62,7 @@ def clickedPos(pos):
 
 
 def main():
+    pygame.font.init()
     win = pygame.display.set_mode((size, size))
     pygame.display.set_caption("Shortest Path Finding Algorithms")
     board = [[Node(i, j, size // rows) for j in range(rows)] for i in range(rows)]
@@ -64,7 +72,7 @@ def main():
     endNode = None
     running = True
     while running:
-        drawBoard(win, board)
+        cntBlacks = drawBoard(win, board)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -105,6 +113,18 @@ def main():
                                 board[i][j].addPosCost()
                         foundPath = dijkstra.dijkstra(lambda: drawBoard(win, board), board, startNode, endNode)
                             
+                    elif event.key == pygame.K_f:
+                        for i in range(rows):
+                            for j in range(rows):
+                                board[i][j].addNegPosCost()
+                        foundPath = bellman_ford.BellmanFord(lambda: drawBoard(win, board), win, board, startNode, endNode, cntBlacks)
+                        if foundPath == False:
+                            myFont = pygame.font.SysFont("Comic Sans MS", 50)
+                            text = myFont.render("The negative cycle has occured!", True, green)
+                            win.blit(text, (size // rows + 25 , size // 2))
+                            pygame.display.update()
+                            sleep(4)
+
                     
                     if not foundPath:
                         sleep(0.5)

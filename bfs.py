@@ -46,6 +46,7 @@ def BFS(draw, board, start, end):
         i, j = temp
         board[i][j].color = green
         draw()
+        sleep(0.015)
         temp = parent[i][j]
 
     sleep(1)

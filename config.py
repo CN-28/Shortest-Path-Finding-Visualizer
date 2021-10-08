@@ -1,5 +1,7 @@
-rows = 60
+#max rows = 30 for Bellman-Ford (very slow algorithm)
+rows = 20
 size = 900
+spacing = size // rows
 white = 255, 255, 255
 black = 0, 0, 0
 red = 255, 0, 0
@@ -9,3 +11,4 @@ yellow = 255, 255, 0
 purple = 128, 0, 128
 orange = 255, 165, 0
 grey = 128, 128, 128
+pink = 255, 20, 147
