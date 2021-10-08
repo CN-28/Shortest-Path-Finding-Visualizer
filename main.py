@@ -17,16 +17,16 @@ class Node:
         self.cost = randint(0, 999)
     
     def addNegPosCost(self):
-        self.cost = randint(-10, 999)
+        self.cost = randint(-6, 999)
 
     def display(self, win):
-        pygame.draw.rect(win, self.color, (self.y, self.x, self.size, self.size))
+        pygame.draw.rect(win, self.color, (self.x, self.y, self.size, self.size))
     
 
 def drawSquare(win, node):
     node.display(win)
-    pygame.draw.line(win, grey, (0, node.col * spacing), (size, node.col * spacing))
-    pygame.draw.line(win, grey, (node.row * spacing, 0), (node.row * spacing, size))
+    pygame.draw.line(win, grey, (0, node.row * spacing), (size, node.row * spacing))
+    pygame.draw.line(win, grey, (node.col * spacing, 0), (node.col * spacing, size))
 
 
 def drawBoard(win, board):
@@ -37,13 +37,10 @@ def drawBoard(win, board):
         board[rows - 1][i].color = black
         board[i][rows - 1].color = black
     
-    cntBlacks = 0
     for i in range(rows):
         for j in range(rows):
             node = board[i][j]
             node.display(win)
-            if node.color == black:
-                cntBlacks += 1
     
 
     for i in range(rows):
@@ -51,12 +48,11 @@ def drawBoard(win, board):
         pygame.draw.line(win, grey, (i * spacing, 0), (i * spacing, size))
 
     pygame.display.update()
-    return cntBlacks
 
 
 def clickedPos(pos):
     x, y = pos
-    row, col = x // spacing, y // spacing
+    row, col = y // spacing, x // spacing
     return row, col
     
 
@@ -117,7 +113,8 @@ def main():
                         for i in range(rows):
                             for j in range(rows):
                                 board[i][j].addNegPosCost()
-                        foundPath = bellman_ford.BellmanFord(lambda: drawBoard(win, board), win, board, startNode, endNode, cntBlacks)
+                        foundPath = bellman_ford.BellmanFord(lambda: drawBoard(win, board), win, board, startNode, endNode)
+                        
                         if foundPath == False:
                             myFont = pygame.font.SysFont("Comic Sans MS", 50)
                             text = myFont.render("The negative cycle has occured!", True, green)
