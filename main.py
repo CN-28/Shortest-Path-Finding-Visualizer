@@ -12,9 +12,10 @@ class Node:
         self.x = col * size
         self.color = white
         self.size = size
+        self.cost = 1
         
     def addPosCost(self):
-        self.cost = randint(1, 1)
+        self.cost = randint(1, 40)
     
     def addNegPosCost(self):
         self.cost = randint(-6, 999)
@@ -120,9 +121,6 @@ def main():
                             sleep(4)
                     
                     elif event.key == pygame.K_a:
-                        for i in range(rows):
-                            for j in range(rows):
-                                board[i][j].addPosCost()
                         foundPath = a_star.a_star(lambda: drawBoard(win, board), board, startNode, endNode)
                     
                     if not foundPath:
