@@ -1,6 +1,6 @@
 #max rows = 45 for Bellman-Ford (very slow algorithm)
 rows = 45
-size = 900
+size = 765
 spacing = size // rows
 white = 255, 255, 255
 black = 0, 0, 0

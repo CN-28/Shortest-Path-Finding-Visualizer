@@ -14,7 +14,7 @@ class Node:
         self.size = size
         
     def addPosCost(self):
-        self.cost = randint(0, 999)
+        self.cost = randint(1, 1)
     
     def addNegPosCost(self):
         self.cost = randint(-6, 999)
@@ -37,16 +37,13 @@ def drawBoard(win, board):
         board[rows - 1][i].color = black
         board[i][rows - 1].color = black
     
-    for i in range(rows):
-        for j in range(rows):
-            node = board[i][j]
+    for row in board:
+        for node in row:
             node.display(win)
     
-
     for i in range(rows):
         pygame.draw.line(win, grey, (0, i * spacing), (size, i * spacing))
         pygame.draw.line(win, grey, (i * spacing, 0), (i * spacing, size))
-
     pygame.display.update()
 
 
@@ -68,7 +65,7 @@ def main():
     endNode = None
     running = True
     while running:
-        cntBlacks = drawBoard(win, board)
+        drawBoard(win, board)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -114,14 +111,19 @@ def main():
                             for j in range(rows):
                                 board[i][j].addNegPosCost()
                         foundPath = bellman_ford.BellmanFord(lambda: drawBoard(win, board), win, board, startNode, endNode)
-                        
+
                         if foundPath == False:
                             myFont = pygame.font.SysFont("Comic Sans MS", 50)
                             text = myFont.render("The negative cycle has occured!", True, green)
                             win.blit(text, (size // rows + 25 , size // 2))
                             pygame.display.update()
                             sleep(4)
-
+                    
+                    elif event.key == pygame.K_a:
+                        for i in range(rows):
+                            for j in range(rows):
+                                board[i][j].addPosCost()
+                        foundPath = a_star.a_star(lambda: drawBoard(win, board), board, startNode, endNode)
                     
                     if not foundPath:
                         sleep(0.5)
