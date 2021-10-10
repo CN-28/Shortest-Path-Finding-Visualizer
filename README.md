@@ -4,14 +4,14 @@
 
 # 📜 Table of contents
 * [About The Project](#about-the-project)
-* [Visualization example](#visualization-example)
+* [Visualization example](#visualization)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Technologies](#technologies)
 * [License](#license)
 
 
-# 📘 About The Project <a name="#-about-the-project-"></a>
+<h1 id="about-the-project"> 📘 About The Project </h1>
 The player sets the start and end of the path, moreover it can build walls to make the path to the goal more difficult and after selection of the algorithm the player wants to see, application starts to visualize finding the shortest path from the start to the end.
 
 ## Implemented algorithms:
@@ -23,14 +23,14 @@ The player sets the start and end of the path, moreover it can build walls to ma
 ## Why did I build this project?
 I did Shortest Path Finding Visualizer project to get to know better the most popular and probably the most useful algorithms of finding the shortest paths.
 
-# 📈 Visualization example <a name="#visualization-example"></a>
+<h1 id="visualization"> 📈 Visualization example </h1>
 The following visalization shows <strong>A* algorithm</strong> during the proccess of finding the shortest path.
 <p>Want to see other algorithms running? Install the app and try it for yourself!</p>
 
 ![A_star](https://user-images.githubusercontent.com/67509491/136714105-2d5445c6-c317-430d-a419-0c0081261867.gif)
 
 
-# 🔧 Installation <a name="#installation"></a>
+<h1 id="installation"> 🔧 Installation </h1>
 To run visualization app, you need to have <strong>pygame</strong> and <strong>pygame_gui</strong> installed.
 
 <p>If you don't have it installed, open command prompt and enter the following commands.</p>
@@ -49,8 +49,24 @@ pip install pygame_gui
 python main.py
 ```
 
-# 📋 Usage <a name="#usage"></a>
+<h1 id="usage"> 📋 Usage </h1>
 
-# 👨‍💻 Technologies <a name="#technologies"></a>
+1. Choose squares for the start and end of the path, then left-click on these squares to apply the changes. The start and end squares should change their colors to yellow and purple.
 
-# ⚖️ License <a name="#license"></a>
+2.  Left-click the square, on which you want to build the wall. (The start and end squares must be chosen).
+
+3. Select the algorithm you want to see running and hit the appropriate button.
+
+4. Reset the map to its initial state by clicking the <strong>RESET button</strong>.
+
+5. Return to first bullet point and visualize again or quit the application.
+
+
+<h1 id="technologies"> 👨‍💻 Technologies </h1>
+
+Project is created with:
+- **Python**: version 3.8.8
+- **Pygame**: version 2.0.2
+- **Pygame GUI** : version 0.5.7
+
+<h1 id ="license"> ⚖️ License </h1>
