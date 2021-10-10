@@ -3,6 +3,21 @@ from time import sleep
 from main import drawSquare
 from config import *
 
+def getPath(draw, board, parent, start, end):
+    temp = end.row, end.col
+    while temp != None:
+        i, j = temp
+        board[i][j].color = green
+        draw()
+        sleep(0.015)
+        temp = parent[i][j]
+
+    sleep(1)
+    start.color = yellow
+    end.color = orange
+    draw()
+
+
 def BellmanFord(draw, win, board, start, end):
     dist = [[float("inf") for _ in range(rows)] for _ in range(rows)]
     parent = [[None for _ in range(rows)] for _ in range(rows)]
@@ -22,27 +37,25 @@ def BellmanFord(draw, win, board, start, end):
                 isChanged = False
                 for step_row, step_col in dirs:
                     i, j = row + step_row, col + step_col
-                    if 0 < i < rows - 1 and 0 < j < rows - 1:
-                        node = board[i][j]
-                        if node.color == black:
-                            continue
+                    node = board[i][j]
+                    if node.color == black:
+                        continue
 
-                        if dist[row][col] + node.cost < dist[i][j]:
-                            dist[i][j] = dist[row][col] + node.cost
-                            parent[i][j] = row, col
+                    if dist[row][col] + node.cost < dist[i][j]:
+                        dist[i][j] = dist[row][col] + node.cost
+                        parent[i][j] = row, col
 
-                            if node != end and node != start and node.color != red:
-                                isChanged = True
-                                node.color = red
-                                drawSquare(win, node)
-                            
-                                for step_row, step_col in dirs:
-                                    k, l = i + step_row, j + step_col
-                                    if 0 < k < rows - 1 and 0 < l < rows - 1:
-                                        node = board[k][l]
-                                        if node.color == white:
-                                            node.color = blue
-                                            drawSquare(win, node)
+                        if node != end and node != start and node.color != red:
+                            isChanged = True
+                            node.color = red
+                            drawSquare(win, node)
+                        
+                            for step_row, step_col in dirs:
+                                k, l = i + step_row, j + step_col
+                                node = board[k][l]
+                                if node.color == white:
+                                    node.color = blue
+                                    drawSquare(win, node)
 
                 if isChanged:
                     pygame.display.update()
@@ -56,26 +69,13 @@ def BellmanFord(draw, win, board, start, end):
 
             for step_row, step_col in dirs:
                 i, j = row + step_row, col + step_col
-                if 0 < i < rows - 1 and 0 < j < rows - 1:
-                    node = board[i][j]
-                    if node.color == black:
-                        continue
+                node = board[i][j]
+                if node.color == black:
+                    continue
 
-                    if dist[row][col] + node.cost < dist[i][j]:
-                        return False
+                if dist[row][col] + node.cost < dist[i][j]:
+                    return False
     
-
     if dist[end.row][end.col] != float("inf"):
-        temp = end.row, end.col
-        while temp != None:
-            i, j = temp
-            board[i][j].color = green
-            draw()
-            sleep(0.015)
-            temp = parent[i][j]
-
-        sleep(1)
-        start.color = yellow
-        end.color = orange
-        draw()
+        getPath(lambda: draw(), board, parent, start, end)
         return True
