@@ -32,7 +32,7 @@ def drawSquare(win, node):
 
 def drawBoard(win, manager, board):
     win.fill(white)
-    pygame.draw.rect(win, (142, 121, 121), (0, size, size, 100))
+    pygame.draw.rect(win, (150, 150, 150), (0, size, size, 100))
     for i in range(rows):
         board[i][0].color = black
         board[0][i].color = black
