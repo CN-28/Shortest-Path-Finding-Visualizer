@@ -130,9 +130,9 @@ def main():
                             foundPath = bellman_ford.BellmanFord(lambda: drawBoard(win, manager, board), win, board, startNode, endNode)
 
                             if foundPath == False:
-                                myFont = pygame.font.SysFont("Comic Sans MS", 50)
+                                myFont = pygame.font.SysFont("Comic Sans MS", int((5/80) * size))
                                 text = myFont.render("The negative cycle has occured!", True, green)
-                                win.blit(text, (size // rows + 25 , size // 2))
+                                win.blit(text, (size // rows + (15/800) * size , size // 2))
                                 pygame.display.update()
                                 sleep(4)
                         
