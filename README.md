@@ -21,8 +21,14 @@ The player sets the start and end of the path, moreover it can build walls to ma
 
 ## Why did I build this project?
 I did Shortest Path Finding Visualizer project to get to know better the most popular and probably the most useful algorithms of finding the shortest paths. 
-# 📈 Visuals
-## BFS
+# 📈 Visualization example
+The following visalization shows A* algorithm during the proccess of finding the shortest path.
+<p>Want to see other algorithms running? Install the app and try it for yourself!</p>
+
+![A_star](https://user-images.githubusercontent.com/67509491/136714105-2d5445c6-c317-430d-a419-0c0081261867.gif)
+
+
+
 
 
 # 🔧 Installation
