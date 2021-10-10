@@ -15,7 +15,7 @@ class Node:
         self.cost = 1
         
     def addPosCost(self):
-        self.cost = randint(1, 40)
+        self.cost = randint(0, 40)
     
     def addNegPosCost(self):
         self.cost = randint(-6, 999)
