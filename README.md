@@ -11,7 +11,7 @@
 * [License](#license)
 
 
-# 📘 About The Project <a name="#about-the-project"></a>
+# 📘 About The Project <a name="#-about-the-project-"></a>
 The player sets the start and end of the path, moreover it can build walls to make the path to the goal more difficult and after selection of the algorithm the player wants to see, application starts to visualize finding the shortest path from the start to the end.
 
 ## Implemented algorithms:
