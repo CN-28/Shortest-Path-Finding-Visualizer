@@ -70,3 +70,5 @@ Project is created with:
 - **Pygame GUI** : version 0.5.7
 
 <h1 id ="license"> ⚖️ License </h1>
+
+![GitHub](https://img.shields.io/github/license/CN-28/Shortest-Path-Finding-Visualizer)
