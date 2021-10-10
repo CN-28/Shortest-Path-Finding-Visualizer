@@ -31,7 +31,7 @@ The following visalization shows <strong>A* algorithm</strong> during the procce
 
 
 <h1 id="installation"> 🔧 Installation </h1>
-To run visualization app, you need to have <strong>pygame</strong> and <strong>pygame_gui</strong> installed.
+To run visualization app, you need to have <strong>Pygame</strong> and <strong>Pygame GUI</strong> installed.
 
 <p>If you don't have it installed, open command prompt and enter the following commands.</p>
 
