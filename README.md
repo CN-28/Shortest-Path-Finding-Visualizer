@@ -20,6 +20,13 @@ The player sets the start and end of the path, moreover it can build walls to ma
 - Bellman-Ford
 - A*</strong>
 
+In BFS and A* algorithms distance from each square to adjacent squares is 1.
+
+<p> In Dijkstra's algorithm for each square a number between 0 and 40 is drawn. To move to some square B from any adjacent square A the distance of drawn number from B square must be covered.</p>
+
+<p> In Bellman-Ford algorithm there is exact mechanism as in Dijkstra's algorithm, but the numbers are drown from [-6, 999].
+There is a chance that the negative cycle will occure. In such a case there is no shortest path and the map will reset to its initital state. </p>
+
 ## Why did I build this project?
 I did Shortest Path Finding Visualizer project to get to know better the most popular and probably the most useful algorithms of finding the shortest paths.
 
