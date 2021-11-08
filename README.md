@@ -12,7 +12,7 @@
 
 
 <h1 id="about-the-project"> 📘 About The Project </h1>
-The player sets the start and end of the path, moreover it can build walls to make the path to the goal more difficult and after the player selects the algorithm, application starts to visualize the shortest path from the start to the end.
+The player sets the start and end of the path, moreover he or she can build walls to make the path to the goal more difficult and after the player selects the algorithm, application starts to visualize the shortest path from the start to the end.
 
 ## Implemented algorithms:
 - <strong>BFS
